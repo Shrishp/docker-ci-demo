@@ -1,4 +1,3 @@
-# Docker-cicd-docker-demo
 # Jenkins CI/CD Pipeline with Docker Integration
 
 ## Overview
