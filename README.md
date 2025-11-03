@@ -30,53 +30,57 @@ Here’s what happens when code is pushed to GitHub:
 If the app requires compilation or dependency installation, it’s done here.
 
 Example:
-
+```bash
 npm install     # Node.js app
 
 mvn package     # Java app
 
 pip install -r requirements.txt  # Python app
-
+```
 3️⃣ Build Docker Image
 Jenkins builds the Docker image using the provided Dockerfile.
 
 Command:
-
+```bash
 docker build -t <dockerhub-username>/<image-name>:latest .
+```
 
 4️⃣ Push to Docker Hub
 Jenkins logs into Docker Hub using saved credentials and pushes the built image.
 
 Command:
-
+```bash
 docker push <dockerhub-username>/<image-name>:latest
-
+```
 5️⃣ Deploy (Optional)
 After pushing, Jenkins can automatically run the new container on the server.
 
 Example:
-
+```bash
 docker run -d -p 8080:80 <dockerhub-username>/<image-name>:latest
-
+```
 Tools and Technologies Used
 Tool	Purpose
 
-Jenkins -> Automate the CI/CD workflow
+- Jenkins -> Automate the CI/CD workflow
 
-GitHub -> Store and version control source code
+- GitHub -> Store and version control source code
 
-Docker -> Containerize the application
+- Docker -> Containerize the application
 
-Docker -> Hub	Store built Docker images
+- Docker -> Hub	Store built Docker images
 
-Linux (Ubuntu/RHEL)	-> Jenkins host and deployment environment
+- Linux (Ubuntu/RHEL)	-> Jenkins host and deployment environment
 
 Jenkins Credentials Required
+
 Credential ID	Type	Used For
-github-cred	Username + Personal Access Token	To fetch code from GitHub
-dockerhub-cred	Username + Password	To push images to Docker Hub
 
+- github-cred	Username + Personal Access Token	To fetch code from GitHub
 
+- dockerhub-cred	Username + Password	To push images to Docker Hub
+
+```bash
   Step       Tool                  Action               Output             
 | ---- | --------------- | --------------------- | -------------------|
 | 1️  | GitHub          | Developer pushes code | Updated repo        |
@@ -87,6 +91,7 @@ dockerhub-cred	Username + Password	To push images to Docker Hub
 | 6️  | Docker Hub      | Pushes image          | Image stored online |
 | 7️  | Docker / Server | Deploys image         | Running container   |
 | 8️  | Jenkins         | Shows result          | Success or failure  |
+
           ┌──────────────┐
           │   Developer  │
           │   pushes code│
@@ -115,7 +120,8 @@ dockerhub-cred	Username + Password	To push images to Docker Hub
                     Deploy Container
                           │
                           ▼
-                 ✅ Application Live
+                  Application Live
+```
 Summary
 
 This project shows how to integrate Jenkins, GitHub, and Docker to create an automated CI/CD workflow.
